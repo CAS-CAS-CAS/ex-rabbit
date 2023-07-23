@@ -33,3 +33,79 @@
      Reason:     reached_max_restart_intensity
      Offender:   [{pid,<0.276.0>},{id,connection},{mfargs,{amqp_gen_connection,start_link,[<0.275.0>,{amqp_params_network,<<"guest">>,{plaintext,<<"guest">>},<<"/">>,"localhost",5672,0,0,10,50000,none,[fun amqp_auth_mechanisms:plain/3,fun amqp_auth_mechanisms:amqplain/3],[],[]}]}},{restart_type,intrinsic},{shutdown,brutal_kill},{child_type,worker}]
 
+2023-07-22 17:15:25 =ERROR REPORT====
+** Generic server <0.276.0> terminating 
+** Last message in was socket_closed
+** When Server state == {state,amqp_network_connection,{state,#Port<0.5>,<<"client 127.0.0.1:54407 -> 127.0.0.1:5672">>,10,<0.281.0>,131072,<0.275.0>,undefined,false},<0.280.0>,{amqp_params_network,<<"guest">>,{plaintext,<<"guest">>},<<"/">>,"localhost",5672,0,0,10,50000,none,[fun amqp_auth_mechanisms:plain/3,fun amqp_auth_mechanisms:amqplain/3],[],[]},2047,[{<<"capabilities">>,table,[{<<"publisher_confirms">>,bool,true},{<<"exchange_exchange_bindings">>,bool,true},{<<"basic.nack">>,bool,true},{<<"consumer_cancel_notify">>,bool,true},{<<"connection.blocked">>,bool,true},{<<"consumer_priorities">>,bool,true},{<<"authentication_failure_close">>,bool,true},{<<"per_consumer_qos">>,bool,true},{<<"direct_reply_to">>,bool,true}]},{<<"cluster_name">>,longstr,<<"rabbit@rabbit">>},{<<"copyright">>,longstr,<<"Copyright (c) 2007-2023 VMware, Inc. or its affiliates.">>},{<<"information">>,longstr,<<"Licensed under the MPL 2.0. Website: https://rabbitmq.com">>},{<<"platform">>,longstr,<<"Erlang/OTP 25.3.2.4">>},{<<"product">>,longstr,<<"RabbitMQ">>},{<<"version">>,longstr,<<"3.12.2">>}],none,false}
+** Reason for termination ==
+** socket_closed_unexpectedly
+2023-07-22 17:15:25 =CRASH REPORT====
+  crasher:
+    initial call: amqp_gen_connection:init/1
+    pid: <0.276.0>
+    registered_name: []
+    exception exit: {socket_closed_unexpectedly,[{gen_server,handle_common_reply,8,[{file,"gen_server.erl"},{line,1241}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,240}]}]}
+    ancestors: [<0.274.0>,amqp_sup,<0.260.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.274.0>]
+    dictionary: [{process_name,{amqp_gen_connection,<<"client 127.0.0.1:54407 -> 127.0.0.1:5672">>}},{gen_server_call_timeout,70000}]
+    trap_exit: true
+    status: running
+    heap_size: 1598
+    stack_size: 28
+    reductions: 2624
+  neighbours:
+2023-07-22 17:15:25 =SUPERVISOR REPORT====
+     Supervisor: {<0.274.0>,amqp_connection_sup}
+     Context:    child_terminated
+     Reason:     socket_closed_unexpectedly
+     Offender:   [{pid,<0.276.0>},{id,connection},{mfargs,{amqp_gen_connection,start_link,[<0.275.0>,{amqp_params_network,<<"guest">>,{plaintext,<<"guest">>},<<"/">>,"localhost",5672,0,0,10,50000,none,[fun amqp_auth_mechanisms:plain/3,fun amqp_auth_mechanisms:amqplain/3],[],[]}]}},{restart_type,intrinsic},{shutdown,brutal_kill},{child_type,worker}]
+
+2023-07-22 17:15:25 =SUPERVISOR REPORT====
+     Supervisor: {<0.274.0>,amqp_connection_sup}
+     Context:    shutdown
+     Reason:     reached_max_restart_intensity
+     Offender:   [{pid,<0.276.0>},{id,connection},{mfargs,{amqp_gen_connection,start_link,[<0.275.0>,{amqp_params_network,<<"guest">>,{plaintext,<<"guest">>},<<"/">>,"localhost",5672,0,0,10,50000,none,[fun amqp_auth_mechanisms:plain/3,fun amqp_auth_mechanisms:amqplain/3],[],[]}]}},{restart_type,intrinsic},{shutdown,brutal_kill},{child_type,worker}]
+
+2023-07-22 17:15:25 =ERROR REPORT====
+** Generic server <0.287.0> terminating 
+** Last message in was {channel_exit,1,{writer,send_failed,badarg}}
+** When Server state == {state,1,<0.276.0>,<0.286.0>,network,{[],[]},false,<0.288.0>,none,none,0,true,none,{0,nil},{0,nil},true,false}
+** Reason for termination ==
+** {infrastructure_died,{writer,send_failed,badarg}}
+2023-07-22 17:15:25 =CRASH REPORT====
+  crasher:
+    initial call: amqp_channel:init/1
+    pid: <0.287.0>
+    registered_name: []
+    exception exit: {{infrastructure_died,{writer,send_failed,badarg}},[{gen_server,handle_common_reply,8,[{file,"gen_server.erl"},{line,1241}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,240}]}]}
+    ancestors: [<0.285.0>,<0.279.0>,<0.275.0>,<0.274.0>,amqp_sup,<0.260.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.285.0>]
+    dictionary: [{process_name,{amqp_channel,{<<"client 127.0.0.1:54407 -> 127.0.0.1:5672">>,1}}},{gen_server_call_timeout,70000}]
+    trap_exit: false
+    status: running
+    heap_size: 987
+    stack_size: 28
+    reductions: 1062
+  neighbours:
+2023-07-22 17:15:25 =SUPERVISOR REPORT====
+     Supervisor: {<0.285.0>,amqp_channel_sup}
+     Context:    child_terminated
+     Reason:     {infrastructure_died,{writer,send_failed,badarg}}
+     Offender:   [{pid,<0.287.0>},{id,channel},{mfargs,{amqp_channel,start_link,[network,<0.276.0>,1,<0.286.0>,{<<"client 127.0.0.1:54407 -> 127.0.0.1:5672">>,1}]}},{restart_type,intrinsic},{shutdown,300000},{child_type,worker}]
+
+2023-07-22 17:15:25 =SUPERVISOR REPORT====
+     Supervisor: {<0.285.0>,amqp_channel_sup}
+     Context:    shutdown
+     Reason:     reached_max_restart_intensity
+     Offender:   [{pid,<0.287.0>},{id,channel},{mfargs,{amqp_channel,start_link,[network,<0.276.0>,1,<0.286.0>,{<<"client 127.0.0.1:54407 -> 127.0.0.1:5672">>,1}]}},{restart_type,intrinsic},{shutdown,300000},{child_type,worker}]
+
+2023-07-22 17:15:25 =SUPERVISOR REPORT====
+     Supervisor: {<0.279.0>,amqp_channel_sup_sup}
+     Context:    shutdown_error
+     Reason:     shutdown
+     Offender:   [{nb_children,1},{id,channel_sup},{mfargs,{amqp_channel_sup,start_link,[network,<0.276.0>,<<"client 127.0.0.1:54407 -> 127.0.0.1:5672">>]}},{restart_type,temporary},{shutdown,infinity},{child_type,supervisor}]
+
